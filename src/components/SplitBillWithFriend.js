@@ -9,6 +9,7 @@ export default function SplitBillWithFriend({ friend, handleBalance }) {
     // My Cost
     const myExpense = expense;
 
+
     // Total Bill
     const totalBill = bill;
 
@@ -51,7 +52,7 @@ export default function SplitBillWithFriend({ friend, handleBalance }) {
               <input
                 type="number"
                 value={bill}
-                onChange={(e) => setBill(Number(e.target.value))}
+                onChange={(e) => setBill(e.target.value)}
                 className="form-control"
               />
             </div>
@@ -64,7 +65,7 @@ export default function SplitBillWithFriend({ friend, handleBalance }) {
               <input
                 type="number"
                 value={expense}
-                onChange={(e) => setExpense(Number(e.target.value))}
+                onChange={(e) => setExpense(e.target.value)}
                 className="form-control"
               />
             </div>
@@ -98,7 +99,7 @@ export default function SplitBillWithFriend({ friend, handleBalance }) {
             </div>
           </div>
           <div className="d-flex justify-content-end mt-3">
-            <div>
+            <div style={{display: `${bill - expense < 0 ? "none" : "block"}`}}>
               <button className="btn-special" onClick={handleRecievedBalance}>
                 Split Bill
               </button>
