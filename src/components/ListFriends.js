@@ -9,7 +9,9 @@ export default function ListFriends({
 }) {
   return (
     <>
-      <div>
+      <div
+        className="p-3"
+      >
         {friends.length > 0 &&
           friends.map((friend) => (
             <Friend

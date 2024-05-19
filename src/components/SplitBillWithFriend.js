@@ -33,7 +33,13 @@ export default function SplitBillWithFriend({ friend, handleBalance }) {
   return (
     <div className="p-4">
       {friend && (
-        <>
+        <div
+          className="shadow p-5"
+          style={{
+            backgroundImage:
+              "linear-gradient( 184.1deg,  rgba(249,255,182,1) 44.7%, rgba(226,255,172,1) 67.2% )",
+          }}
+        >
           <div className="row">
             <h1>Split a Bill With {friend.name}</h1>
           </div>
@@ -93,15 +99,12 @@ export default function SplitBillWithFriend({ friend, handleBalance }) {
           </div>
           <div className="d-flex justify-content-end mt-3">
             <div>
-              <button
-                className="btn btn-outline-warning"
-                onClick={handleRecievedBalance}
-              >
+              <button className="btn-special" onClick={handleRecievedBalance}>
                 Split Bill
               </button>
             </div>
           </div>
-        </>
+        </div>
       )}
     </div>
   );

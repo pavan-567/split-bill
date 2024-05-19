@@ -40,6 +40,7 @@ export default function SplitBill() {
         <SplitBillWithFriend
           friend={selectFriend}
           handleBalance={handleSubmitBalance}
+          key={selectFriend?.id}
         />
       </div>
     </div>

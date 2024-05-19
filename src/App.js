@@ -1,10 +1,17 @@
+import { useEffect } from "react";
 import "./App.css";
+
 import SplitBill from "./components/SplitBill";
 
 function App() {
+  useEffect(() => {
+    document.title = "Split Bill | React";
+  }, []);
   return (
     <div className="container" style={{ marginTop: "10rem" }}>
-      <h1 className="text-center my-5 text-decoration-underline">Eat Nd Split</h1>
+      <div className="text-center my-5 shadow py-3 fs-1">
+        Split Bill | React Project
+      </div>
       <SplitBill />
     </div>
   );

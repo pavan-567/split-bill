@@ -22,7 +22,7 @@ export default function AddFriend({ handleFriend }) {
   }
 
   return (
-    <div className="mt-3">
+    <div className={`mt-3 ${open ? "shadow" : ""} pb-4 pt-1 px-2 my-3`}>
       {open && (
         <div className="d-flex flex-column my-3 p-3">
           <div className="mt-3">
@@ -38,11 +38,12 @@ export default function AddFriend({ handleFriend }) {
             <label className="form-label">Image URL</label>
             <input type="text" className="form-control" value={url} disabled />
           </div>
-          <div className="mt-3 align-self-end w-25">
+          <div className="mt-3 d-flex justify-content-end">
             <button
-              className="btn btn-outline-warning"
-              style={{ width: "100%" }}
+              className="btn-special"
               onClick={handleSubmit}
+              style={{ width: "30%" }}
+              disabled={name.length === 0}
             >
               Add
             </button>
@@ -52,9 +53,7 @@ export default function AddFriend({ handleFriend }) {
 
       <div className="d-flex justify-content-end">
         <button
-          className={`btn btn-outline-danger float-right self-end ${
-            open ? "me-3" : ""
-          }`}
+          className={`btn-special float-right self-end ${open ? "me-3" : ""}`}
           onClick={() => setOpen((val) => !val)}
         >
           {open ? "Close" : "Add Friend"}
