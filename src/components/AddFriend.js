@@ -1,6 +1,8 @@
 import { useState } from "react";
+import { useSplitBill } from "../hooks/BillContext";
 
-export default function AddFriend({ handleFriend }) {
+export default function AddFriend() {
+  const { handleFriends: handleFriend } = useSplitBill();
   const [open, setOpen] = useState(false);
   const [name, setName] = useState("");
   const url = "https://i.pravatar.cc/48";

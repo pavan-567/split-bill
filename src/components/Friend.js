@@ -1,6 +1,7 @@
+import { useSplitBill } from "../hooks/BillContext";
 
-
-export default function Friend({ friend, selectFriend, selectHandleFriend }) {
+export default function Friend({ friend }) {
+  const { selectFriend, selectHandleFriend } = useSplitBill();
   return (
     <div
       className={`d-flex mt-3 p-2 rounded frame ${
@@ -43,7 +44,7 @@ export default function Friend({ friend, selectFriend, selectHandleFriend }) {
               border: "none",
               padding: "5px 10px",
               borderRadius: "10px",
-              marginTop: "5px"
+              marginTop: "5px",
             }}
             onClick={() => selectHandleFriend(null)}
           >
@@ -56,7 +57,7 @@ export default function Friend({ friend, selectFriend, selectHandleFriend }) {
               border: "none",
               padding: "5px 10px",
               borderRadius: "10px",
-              marginTop: "5px"
+              marginTop: "5px",
             }}
             onClick={() => selectHandleFriend(friend)}
           >

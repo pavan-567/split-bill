@@ -1,6 +1,8 @@
 import { useState } from "react";
+import { useSplitBill } from "../hooks/BillContext";
 
-export default function SplitBillWithFriend({ friend, handleBalance }) {
+export default function SplitBillWithFriend({ friend }) {
+  const { handleBalance } = useSplitBill();
   const [bill, setBill] = useState("");
   const [expense, setExpense] = useState("");
   const [payBill, setPayBill] = useState("you");
@@ -8,7 +10,6 @@ export default function SplitBillWithFriend({ friend, handleBalance }) {
   function handleRecievedBalance() {
     // My Cost
     const myExpense = expense;
-
 
     // Total Bill
     const totalBill = bill;
@@ -99,7 +100,7 @@ export default function SplitBillWithFriend({ friend, handleBalance }) {
             </div>
           </div>
           <div className="d-flex justify-content-end mt-3">
-            <div style={{display: `${bill - expense < 0 ? "none" : "block"}`}}>
+            <div>
               <button className="btn-special" onClick={handleRecievedBalance}>
                 Split Bill
               </button>
