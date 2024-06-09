@@ -1,18 +1,21 @@
 import ListFriends from "./ListFriends";
 import SplitBillWithFriend from "./SplitBillWithFriend";
 import { useSplitBill } from "../hooks/BillContext";
+import Container from "./styles/Container";
+import Header from "./Header";
 
 export default function SplitBill() {
   const { selectFriend } = useSplitBill();
 
   return (
-    <div className="row">
-      <div className="col-md-6 me-5">
-        <ListFriends />
+    <Container>
+      <div className="flex flex-col justify-center items-center gap-5">
+        <Header />
+        <div className="flex justify-center gap-10 grow self-center min-h-[550px]">
+          <ListFriends />
+          <SplitBillWithFriend friend={selectFriend} key={selectFriend?.id} />
+        </div>
       </div>
-      <div className="col-md-5">
-        <SplitBillWithFriend friend={selectFriend} key={selectFriend?.id} />
-      </div>
-    </div>
+    </Container>
   );
 }

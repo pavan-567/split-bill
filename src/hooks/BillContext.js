@@ -22,10 +22,17 @@ function BillProvider({ children }) {
     setSelectFriend(null);
   }
 
+  function handleRemoveFriend(id) {
+    setFriends((currFriends) =>
+      currFriends.filter((friend) => friend.id !== id)
+    );
+    setSelectFriend(null);
+  }
+
   function handleAddFriend(friend) {
     setFriends((currFriends) => [...currFriends, friend]);
   }
-  
+
   return (
     <BillContext.Provider
       value={{
@@ -34,6 +41,7 @@ function BillProvider({ children }) {
         selectHandleFriend: handleFriend,
         selectFriend,
         handleBalance: handleSubmitBalance,
+        removeFriend: handleRemoveFriend,
       }}
     >
       {children}

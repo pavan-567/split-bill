@@ -1,69 +1,62 @@
 import { useSplitBill } from "../hooks/BillContext";
+import Button from "./styles/Button";
+import { TiDelete } from "react-icons/ti";
 
 export default function Friend({ friend }) {
-  const { selectFriend, selectHandleFriend } = useSplitBill();
+  const { selectFriend, selectHandleFriend, removeFriend } = useSplitBill();
   return (
     <div
-      className={`d-flex mt-3 p-2 rounded frame ${
-        friend.id === selectFriend?.id ? "shadow frame-permanent" : ""
+      className={`border flex items-center justify-between p-3 rounded transition-colors delay-75 hover:bg-orange-300 ${
+        selectFriend?.id === friend.id && "bg-orange-300"
       }`}
+      style={{ width: "500px" }}
     >
       {/* Image */}
-      <img
-        src={friend.image}
-        alt="LOL"
-        style={{ width: "70px", borderRadius: "50%" }}
-      />
-      <div className="flex-grow-1 mx-3 d-flex flex-column justify-content-between">
-        <p className="m-0" style={{ fontSize: "20px", fontWeight: "bold" }}>
-          {friend.name}
-        </p>
-        <p
-          className="m-0 mb-2"
-          style={{
-            color:
+      <div className="flex gap-3">
+        <img
+          src={friend.image}
+          alt="LOL"
+          style={{ width: "70px", borderRadius: "50%" }}
+        />
+        <div className="flex flex-col justify-evenly">
+          <p className="font-bold">{friend.name}</p>
+          <p
+            className={`${
               friend.balance < 0
-                ? "red"
+                ? "text-red-500 italic"
                 : friend.balance > 0
-                ? "green"
-                : "black",
-          }}
-        >
-          {friend.balance === 0
-            ? `You and ${friend.name} Are Even`
-            : friend.balance < 0
-            ? `You Owe ${friend.name} ${Math.abs(friend.balance)}$`
-            : `${friend.name} Owes You ${friend.balance}$`}
-        </p>
+                ? "text-green-500 font-bold"
+                : "text-black"
+            }`}
+            style={{
+              color:
+                friend.balance < 0
+                  ? "red"
+                  : friend.balance > 0
+                  ? "green"
+                  : "black",
+            }}
+          >
+            {friend.balance === 0
+              ? `You and ${friend.name} Are Even`
+              : friend.balance < 0
+              ? `You Owe ${friend.name} ${Math.abs(friend.balance)}$`
+              : `${friend.name} Owes You ${friend.balance}$`}
+          </p>
+        </div>
       </div>
-      <div className="">
-        {JSON.stringify(selectFriend) === JSON.stringify(friend) ? (
-          <button
-            className="btn-special"
-            style={{
-              border: "none",
-              padding: "5px 10px",
-              borderRadius: "10px",
-              marginTop: "5px",
-            }}
-            onClick={() => selectHandleFriend(null)}
-          >
+      <div className="flex gap-2 items-center">
+        {selectFriend?.id === friend.id ? (
+          <Button close onClick={() => selectHandleFriend(null)}>
             Close
-          </button>
+          </Button>
         ) : (
-          <button
-            className="btn-special"
-            style={{
-              border: "none",
-              padding: "5px 10px",
-              borderRadius: "10px",
-              marginTop: "5px",
-            }}
-            onClick={() => selectHandleFriend(friend)}
-          >
-            Select
-          </button>
+          <Button onClick={() => selectHandleFriend(friend)}>Select</Button>
         )}
+        <TiDelete
+          className="text-4xl text-red-600 cursor-pointer transition-all hover:text-red-500 hover:scale-125"
+          onClick={() => removeFriend(friend?.id)}
+        />
       </div>
     </div>
   );

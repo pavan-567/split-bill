@@ -1,5 +1,8 @@
 import { useState } from "react";
 import { useSplitBill } from "../hooks/BillContext";
+import Button from "./styles/Button";
+import Input from "./styles/Input";
+import InputContainer from "./styles/InputContainer";
 
 export default function AddFriend() {
   const { handleFriends: handleFriend } = useSplitBill();
@@ -23,43 +26,35 @@ export default function AddFriend() {
     setOpen(false);
   }
 
+  console.log(name.length, name);
+
   return (
-    <div className={`mt-3 ${open ? "shadow" : ""} pb-4 pt-1 px-2 my-3`}>
+    <div className={open && `border p-5`}>
       {open && (
-        <div className="d-flex flex-column my-3 p-3">
-          <div className="mt-3">
+        <div>
+          <InputContainer>
             <label className="form-label">Friend Name</label>
-            <input
+            <Input
               type="text"
               value={name}
-              className="form-control"
               onChange={(e) => setName(e.target.value)}
             />
-          </div>
-          <div className="mt-3">
+          </InputContainer>
+          <InputContainer>
             <label className="form-label">Image URL</label>
-            <input type="text" className="form-control" value={url} disabled />
-          </div>
-          <div className="mt-3 d-flex justify-content-end">
-            <button
-              className="btn-special"
-              onClick={handleSubmit}
-              style={{ width: "30%" }}
-              disabled={name.length === 0}
-            >
-              Add
-            </button>
-          </div>
+            <Input type="text" value={url} disabled />
+          </InputContainer>
         </div>
       )}
-
-      <div className="d-flex justify-content-end">
-        <button
-          className={`btn-special float-right self-end ${open ? "me-3" : ""}`}
-          onClick={() => setOpen((val) => !val)}
-        >
+      <div className="flex gap-5">
+        {open && (
+          <Button onClick={handleSubmit} disabled={name.length === 0}>
+            Add
+          </Button>
+        )}
+        <Button onClick={() => setOpen((val) => !val)}>
           {open ? "Close" : "Add Friend"}
-        </button>
+        </Button>
       </div>
     </div>
   );

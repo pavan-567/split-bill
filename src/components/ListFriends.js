@@ -6,14 +6,12 @@ export default function ListFriends() {
   const { friends } = useSplitBill();
 
   return (
-    <>
-      <div className="p-3">
+    <div className="">
+      <div className="flex flex-col gap-5 mx-5 px-5 py-2">
         {friends.length > 0 &&
           friends.map((friend) => <Friend friend={friend} key={friend.id} />)}
-      </div>
-      <div className="w-100">
         <AddFriend />
       </div>
-    </>
+    </div>
   );
 }
